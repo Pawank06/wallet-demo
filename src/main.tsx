@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { WagmiProvider } from 'wagmi'
-import { arbitrum, mainnet, base, scroll, polygon, sepolia } from '@reown/appkit/networks'
+import { arbitrum, mainnet, base, scroll, polygon, sepolia, AppKitNetwork } from '@reown/appkit/networks'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
 import { createAppKit } from '@reown/appkit/react'
@@ -18,7 +18,7 @@ const metadata = {
   icons: ['https://avatars.githubusercontent.com/u/179229932']
 }
 
-const networks = [mainnet, arbitrum,  base, scroll, polygon, sepolia ]
+const networks: [AppKitNetwork, ...AppKitNetwork[]] = [mainnet, arbitrum, base, scroll, polygon, sepolia]
 
 const wagmiAdapter = new WagmiAdapter({
   networks,
