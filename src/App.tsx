@@ -1,39 +1,39 @@
 // App.tsx
 import React from 'react';
 import { createAppKit } from '@reown/appkit/react';
-import { SolanaAdapter } from '@reown/appkit-adapter-solana/react';
-import { solana, solanaTestnet, solanaDevnet } from '@reown/appkit/networks';
-import { PhantomWalletAdapter, SolflareWalletAdapter } from '@solana/wallet-adapter-wallets';
+import { EthersAdapter } from '@reown/appkit-adapter-ethers'
+import { solana, arbitrum, mainnet, AppKitNetwork } from '@reown/appkit/networks';
 
-// 0. Set up Solana Adapter
-const solanaWeb3JsAdapter = new SolanaAdapter({
-  wallets: [new PhantomWalletAdapter(), new SolflareWalletAdapter()],
-});
 
 // 1. Get projectId from https://cloud.reown.com
-const projectId: string = '3cf5e137d84e71ac48e5222d2f96d774'; // Replace with your actual Project ID
+const projectId: string = '3cf5e137d84e71ac48e5222d2f96d774';
 
 // 2. Create a metadata object - optional
 const metadata = {
-  name: 'AppKit',
-  description: 'AppKit Solana Example',
-  url: 'https://example.com', // Ensure the origin matches your domain & subdomain
-  icons: ['https://avatars.githubusercontent.com/u/179229932'],
-};
+  name: 'My Website',
+  description: 'My Website description',
+  url: 'https://mywebsite.com', // origin must match your domain & subdomain
+  icons: ['https://avatars.mywebsite.com/']
+}
+const networks: [AppKitNetwork, ...AppKitNetwork[]] = [solana, arbitrum, mainnet];
 
 // 3. Create modal
 createAppKit({
-  adapters: [solanaWeb3JsAdapter],
-  networks: [solana, solanaTestnet, solanaDevnet],
+  adapters: [new EthersAdapter()],
+  networks,
   metadata,
   projectId,
   features: {
-    analytics: true, // Optional - defaults to your Cloud configuration
-  },
-});
-
+    analytics: true
+  }
+})
 const App: React.FC = () => {
-  return <appkit-button />;
+  return <div>
+    <div>
+      <appkit-button/>
+      <appkit-network-button/>
+    </div>
+  </div>;
 };
 
 export default App;
