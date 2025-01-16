@@ -1,5 +1,6 @@
 // App.tsx
 import React from 'react';
+import './App.css'
 import { createAppKit } from '@reown/appkit/react';
 import { EthersAdapter } from '@reown/appkit-adapter-ethers'
 import { solana, arbitrum, mainnet, AppKitNetwork } from '@reown/appkit/networks';
@@ -12,7 +13,7 @@ const projectId: string = '3cf5e137d84e71ac48e5222d2f96d774';
 const metadata = {
   name: 'My Website',
   description: 'My Website description',
-  url: 'https://mywebsite.com', // origin must match your domain & subdomain
+  url: 'https://mywebsite.com',
   icons: ['https://avatars.mywebsite.com/']
 }
 const networks: [AppKitNetwork, ...AppKitNetwork[]] = [solana, arbitrum, mainnet];
@@ -29,7 +30,7 @@ createAppKit({
 })
 const App: React.FC = () => {
   return <div>
-    <div>
+    <div className='network'>
       <appkit-button/>
       <appkit-network-button/>
     </div>
