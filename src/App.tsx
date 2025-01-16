@@ -1,35 +1,39 @@
-import { useAccount, useBalance } from 'wagmi'
-import './App.css'
-import { useEffect, useState } from 'react'
+// App.tsx
+import React from 'react';
+import { createAppKit } from '@reown/appkit/react';
+import { SolanaAdapter } from '@reown/appkit-adapter-solana/react';
+import { solana, solanaTestnet, solanaDevnet } from '@reown/appkit/networks';
+import { PhantomWalletAdapter, SolflareWalletAdapter } from '@solana/wallet-adapter-wallets';
 
-function App() {
-  // State with a stricter type for Ethereum addresses.
-  const [address, setAddress] = useState<`0x${string}` | undefined>(undefined);
-  const account = useAccount();
+// 0. Set up Solana Adapter
+const solanaWeb3JsAdapter = new SolanaAdapter({
+  wallets: [new PhantomWalletAdapter(), new SolflareWalletAdapter()],
+});
 
-  const data = useBalance({
-    address: address, // Pass the stricter typed address here.
-  });
+// 1. Get projectId from https://cloud.reown.com
+const projectId: string = '3cf5e137d84e71ac48e5222d2f96d774'; // Replace with your actual Project ID
 
-  useEffect(() => {
-    if (account?.address && account.address.startsWith('0x')) {
-      console.log('Account:', account);
-      console.log("Data:", data);
-      // Log the account info to the console.
-      setAddress(account.address as `0x${string}`); // Type assertion to satisfy TypeScript.
-    }
-  }, [account]);
+// 2. Create a metadata object - optional
+const metadata = {
+  name: 'AppKit',
+  description: 'AppKit Solana Example',
+  url: 'https://example.com', // Ensure the origin matches your domain & subdomain
+  icons: ['https://avatars.githubusercontent.com/u/179229932'],
+};
 
-  return (
-    <main className="w-full h-screen bg-black flex items-center justify-center">
-        <div className="flex items-center">
-        </div>
-        <div className='network'>
-        <w3m-button />
-          <w3m-network-button/>
-        </div>
-    </main>
-  )
-}
+// 3. Create modal
+createAppKit({
+  adapters: [solanaWeb3JsAdapter],
+  networks: [solana, solanaTestnet, solanaDevnet],
+  metadata,
+  projectId,
+  features: {
+    analytics: true, // Optional - defaults to your Cloud configuration
+  },
+});
 
-export default App
+const App: React.FC = () => {
+  return <appkit-button />;
+};
+
+export default App;
