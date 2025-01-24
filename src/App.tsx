@@ -3,7 +3,7 @@ import React from 'react';
 import './App.css'
 import { createAppKit } from '@reown/appkit/react';
 import { EthersAdapter } from '@reown/appkit-adapter-ethers'
-import { arbitrum, mainnet, AppKitNetwork, base } from '@reown/appkit/networks';
+import { arbitrum, mainnet, AppKitNetwork, base, baseSepolia } from '@reown/appkit/networks';
 
 
 // 1. Get projectId from https://cloud.reown.com
@@ -16,7 +16,7 @@ const metadata = {
   url: 'https://mywebsite.com',
   icons: ['https://avatars.mywebsite.com/']
 }
-const networks: [AppKitNetwork, ...AppKitNetwork[]] = [base, arbitrum, mainnet];
+const networks: [AppKitNetwork, ...AppKitNetwork[]] = [base, arbitrum, mainnet, baseSepolia];
 
 // 3. Create modal
 createAppKit({
