@@ -65,14 +65,3 @@ function Components() {
 }
 
 export default Components;
-
-// https://docs.raincards.xyz/reference/getcompanywithdrawalsignature
-// 8QFfkXPJ!XGdsCBk4n
-// 647fbc8d-c5ff-4597-9be5-3474022fd998
-// // 0xB1Eb2977D71b27EB6DE81dd13E7FB744f9B8F98c
-// chainId = 84532
-// token = 0x29684075a3C86ea11D9964BcAf0F956e801396bD
-// amount = 500
-// adminAddress = 0x53a3D640A406D5a8306aE6470a0e221FEAB10828
-// recipientAddress = 0x53a3D640A406D5a8306aE6470a0e221FEAB10828
-// 896c7dab66cf7921fe89274da4f5a3cb7c327037
